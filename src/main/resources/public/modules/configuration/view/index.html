@@ -1,0 +1,18 @@
+<div class="page-header">
+    <h3>Configuration Records</h3>
+</div>
+<div class="row mb-sm">
+    <div class="col-md-12">
+        <div class="pull-right">
+            <a class="btn btn-default btn-sm" ui-sref="twoColumn.configuration.add">
+                <i class="fa fa-plus fa-fw"></i> Add New Configuration
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row ">
+    <div class="col-md-12 md-form-spinner-container">
+        <form-spinner show="dataWaiting"></form-spinner>
+        <div ui-grid="gridOptions" class="grid" style="min-height: 600px;" ui-grid-resize-columns></div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="ui-grid-cell-contents">
+    <a class="btn btn-xs btn-default mr-xs"
+       ng-if="[grid.appScope.jobStatus.PAUSEPENDING.id, grid.appScope.jobStatus.DELETEPENDING.id].indexOf(row.entity.status) < 0"
+       ng-click="grid.appScope.deleteJob(row.entity.id)">
+        <i class="fa fa-remove"></i> Delete
+    </a>
+    <a class="btn btn-xs btn-default mr-xs"
+       ng-if="row.entity.type == 2 && [grid.appScope.jobStatus.RUNNING.id].indexOf(row.entity.status) >= 0"
+       ng-click="grid.appScope.updateJobStatus(row.entity.id, grid.appScope.jobStatus.PAUSED.id, 'Are you sure to pause?')">
+        <i class="fa fa-pause"></i> Pause
+    </a>
+    <a class="btn btn-xs btn-default"
+       ng-if="[grid.appScope.jobStatus.PAUSED.id, grid.appScope.jobStatus.EXCEPTION.id].indexOf(row.entity.status) >= 0"
+       ng-click="grid.appScope.updateJobStatus(row.entity.id, grid.appScope.jobStatus.PENDING.id, 'Are you sure to continue?')">
+        <i class="fa fa-play"></i> Continue
+    </a>
+</div>

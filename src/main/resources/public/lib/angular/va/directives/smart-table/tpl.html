@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="portlet light">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject font-green-sharp bold"><i class="fa fa-shield"></i> {{pageTitle}}</span>
+                </div>
+                <div ng-if="tools" class="actions">
+                    <div class="btn-group">
+                        <a class="btn btn-default btn-circle" href="javascript:;" data-toggle="dropdown">
+                            <i class="fa fa-share"></i>
+                            <span class="hidden-480">Tools </span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="javascript:;">Export to Excel </a></li>
+                            <li>
+                                <a href="javascript:;">Export to CSV </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <cute-spinner show="displaySpinner"></cute-spinner>
+                <div class="table-container">
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-md-4 col-sm-12 vaPaginationContainer" ng-if="pagination.totalCount > 0">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <pagination total-items="pagination.totalCount" ng-model="pagination.currentPage" max-size="pagination.maxSize"
+                                                class="pagination-sm inline" boundary-links="true" ng-change="getRows(pagination.currentPage)" items-per-page="pagination.perPage"
+                                                previous-text="{{'component.pagination.prev' | translate}}"
+                                                next-text="{{'component.pagination.next' | translate}}"
+                                                first-text="{{'component.pagination.first' | translate}}"
+                                                last-text="{{'component.pagination.last' | translate}}"
+                                            ></pagination>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="text-muted">
+                                        {{'component.pagination.caption' | translate:'{start:(pagination.currentPage-1) * pagination.perPage, finish: (pagination.currentPage) * pagination.perPage, total:pagination.totalCount}'}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12" ng-if="pagination.totalCount <= 0"></div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="table-group-actions pull-right">
+                                <select ng-if="!isBlockedPage"
+                                        ng-model="selectedProbe"
+                                        class="table-group-action-input form-control input-inline input-middle"
+                                        ng-options="probe.name as ('labels.node' | translate) + ': ' + probe.name for probe in probes track by probe.name">
+                                </select>
+                                <date-range-picker conf="dateRangeConf" val="selectedDateRange"></date-range-picker>
+                                <button type="button" class="btn yellow btn-middle table-group-action-submit" adv-click="ifvalid:eventSearchParamForm|getRows(1)" >
+                                    <i class="fa fa-search"></i>
+                                    <span>{{'labels.search' | translate}}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="gridOptions.data.length <= 0" class="alert alert-warning">
+                        No logs to show because of no device configured in the system!
+                    </div>
+                    <div ng-if="gridOptions.data.length > 0" ui-grid="gridOptions" class="grid" style="min-height: 600px;" ui-grid-pinning ui-grid-resize-columns></div>
+                    <div class="row" style="margin-top: 10px;" ng-if="pagination.totalCount > 0">
+                        <div class="col-md-12">
+                            <pagination total-items="pagination.totalCount" ng-model="pagination.currentPage" max-size="pagination.maxSize"
+                                        class="pagination-sm inline" boundary-links="true" ng-change="getRows(pagination.currentPage)" items-per-page="pagination.perPage"
+                                        previous-text="{{'component.pagination.prev' | translate}}"
+                                        next-text="{{'component.pagination.next' | translate}}"
+                                        first-text="{{'component.pagination.first' | translate}}"
+                                        last-text="{{'component.pagination.last' | translate}}"
+                                    ></pagination>
+                            <span class="text-muted" style="position: relative; top: 5px; left: 10px;">
+                                {{'component.pagination.caption' | translate:'{start:(pagination.currentPage-1) * pagination.perPage, finish: (pagination.currentPage) * pagination.perPage, total:pagination.totalCount}'}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

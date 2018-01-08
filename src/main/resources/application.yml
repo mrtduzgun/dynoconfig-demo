@@ -1,0 +1,24 @@
+
+server:
+    port: 8099
+
+logging:
+    level:
+        com:
+            trendyol: DEBUG
+        root: ERROR
+
+spring:
+    datasource:
+        platform: postgres
+        url: jdbc:mysql://localhost:3306/dynoconfig?verifyServerCertificate=false&useSSL=true&user=root&password=
+        tomcat:
+            test-while-idle: true
+            validation-query: SELECT 1
+            time-between-eviction-runs-millis: 3000
+    jpa:
+        database: MYSQL
+        hibernate:
+            ddl-auto: none
+flyway:
+    enabled: true

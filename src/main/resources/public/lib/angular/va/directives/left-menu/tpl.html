@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default md-left-menu leftCollapsed">
+    <div class="navbar-header">
+        <div class="navbar-brand"></div>
+    </div>
+    <div class="md-left-menu-body">
+        <div class="panel-group">
+            <div class="panel panel-default" ng-class="{'panel-collapsed': !item.open}" ng-repeat="item in items">
+
+                <a ng-if="item.sref" class="panel-heading" ng-class="{active: item.selected}" role="button" ui-sref="{{item.sref}}" ng-click="toggleCollapse($index)">
+                    <div class="panel-title">
+                        <i ng-class="item.icon"></i> <span class="hidden-xs">{{item.title}}</span>
+                        <i ng-if="item.children && item.children.length > 0" class="fa pull-right" ng-class="item.open ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </div>
+                </a>
+
+                <a ng-if="!item.sref" class="panel-heading" ng-class="{active: item.selected}" role="button" ng-click="toggleCollapse($index)">
+                    <div class="panel-title">
+                        <i ng-class="item.icon"></i> <span class="hidden-xs">{{item.title}}</span>
+                        <i ng-if="item.children && item.children.length > 0" class="fa pull-right" ng-class="item.open ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </div>
+                </a>
+                <div ng-class="{'panel-body': true}" ng-if="item.children && item.children.length > 0">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li ng-repeat="childItem in item.children">
+                            <a ng-if="childItem.sref" ng-class="{active: childItem.selected}" role="button" ui-sref="{{childItem.sref}}" ng-click="childrenSelected($parent.$index, $index)">
+                                <i ng-class="childItem.icon || 'fa fa-angle-double-right fa-fw'"></i>{{childItem.title}}
+                            </a>
+                            <a ng-if="!childItem.sref" ng-class="{active: childItem.selected}" role="button" ng-click="childrenSelected($parent.$index, $index)">
+                                <i ng-class="childItem.icon || 'fa fa-angle-double-right fa-fw'"></i>{{childItem.title}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

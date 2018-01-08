@@ -1,0 +1,48 @@
+<div class="page-header">
+    <h3>Add New Configuration</h3>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <form name="addConfigurationForm" role="form" class="md-form-spinner-container">
+            <form-spinner show="dataWaiting"></form-spinner>
+            <div class="panel panel-form">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Name" ng-model="newConfiguration.name">
+                    </div>
+                    <div class="form-group">
+                        <select name="type" class="form-control" ng-model="newConfiguration.type"
+                                ng-options="t as t for t in availableTypes">
+                            <option value="">Select a type</option>
+                        </select>
+                    </div>
+                    <div class="form-group" ng-show="newConfiguration.type == 'BOOLEAN'">
+                        <select name="type" class="form-control" ng-model="newConfiguration.value"
+                                ng-options="i as i for i in ['0', '1']">
+                        </select>
+                    </div>
+                    <div class="form-group" ng-show="newConfiguration.type != 'BOOLEAN'">
+                        <input type="text" class="form-control" placeholder="Value" ng-model="newConfiguration.value">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Application Name" ng-model="newConfiguration.appName">
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <input id="isActive" class="styled" type="checkbox" ng-model="newConfiguration.active" ng-true-value="true" ng-false-value="false">
+                            <label for="isActive"><strong>Is Active</strong></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="text-right">
+                        <button class="btn btn-default" ng-click="$state.go('twoColumn.configuration.list')"><i class="fa fa-ban fa-fw"></i> Cancel</button>
+                        <button class="btn btn-primary" ng-click="addConfigurationRecord()">
+                            <i class="fa fa-floppy-o fa-fw"></i> Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

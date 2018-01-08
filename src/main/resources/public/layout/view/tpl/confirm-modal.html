@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <div class="modal-title">{{title}}</div>
+</div>
+<div class="modal-body">
+    {{content}}
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" type="button" ng-click="cancel()">
+        <i class="fa fa-ban"></i> Cancel
+    </button>
+
+    <button ng-show="!waiting" class="btn btn-primary" type="button" ng-click="ok()">
+        <i class="fa fa-check"></i> OK
+    </button>
+
+    <button ng-show="waiting" class="btn btn-primary" type="button" ng-disabled="true">
+        <i class="fa fa-spinner faa-spin animated"></i> Wait..
+    </button>
+</div>
